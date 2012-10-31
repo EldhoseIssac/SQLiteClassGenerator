@@ -1,0 +1,24 @@
+//
+//  {TABLENAME}Tble.h
+//
+//  Created by Eldhose on 26/10/12.
+//  Copyright (c) 2012 Islet Systems. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "FMDatabase.h"
+
+#define {TABLENAME}CreateQuery @"{CREATEQUERY}"
+
+@interface {TABLENAME}:NSObject
+{
+{OBJECTLISTLOCAL}
+}
+@property(nonatomic, strong) FMDatabase *database;
+{OBJECTLISTGLOBAL}
+
+@end
+@interface {TABLENAME}Tble : NSObject
++({TABLENAME}Tble *) sharedInstance;
+
+@end
