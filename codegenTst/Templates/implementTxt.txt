@@ -1,24 +1,128 @@
 //
-//  {TABLENAME}Tble.m
+//  {TABLENAME}Helper.m
 //
 //  Created by Eldhose on 26/10/12.
 //  Copyright (c) 2012 Islet Systems. All rights reserved.
 //
 
-#import "{TABLENAME}Tble.h"
+#import "{TABLENAME}Helper.h"
 @implementation {TABLENAME}
-@synthesize database=_database;
 {SYNTHESIZELIST}
 @end
 
-@implementation {TABLENAME}Tble
-static {TABLENAME}Tble *sharedInstance;
-+({TABLENAME}Tble *) sharedInstance {
+@implementation {TABLENAME}Helper
+@synthesize database=_database;
+static {TABLENAME}Helper *sharedInstance;
++({TABLENAME}Helper *) sharedInstance {
     if (!sharedInstance) {
-        sharedInstance = [[{TABLENAME}Tble alloc] init];
+        sharedInstance = [[{TABLENAME}Helper alloc] init];
     }
     return sharedInstance;
 }
 
+-(BOOL)isDataBaseChanged
+{
+    BOOL result=NO;
+    if ([self.database open]) {
+        FMResultSet *results = [self.database executeQuery:@"select sql from sqlite_master where type='table' and name ='{TABLENAME}'"];
+        if([results next]) {
+            NSString *sql  = [results stringForColumn:@"sql"];
+            if([sql isEqualToString:{TABLENAME}CreateQuery])
+            {
+                result=YES;
+            }
+        }
+        else
+        {
+            [self.database update:{TABLENAME}CreateQuery withErrorAndBindings:nil];
+        }
+        [self.database close];
+    } 
+    return(result);
+}
+-({TABLENAME} *)fill{TABLENAME}WithFMResultSet:(FMResultSet *) FMset
+{
+    {TABLENAME} * retObj=[[{TABLENAME} alloc] init];
+{LOADOBJECTWITHFIELDS} 
+    return(retObj);
+}
+-({TABLENAME} *)get{TABLENAME}ForCondition:(NSString *) condition
+{
+    {TABLENAME} * retObj=nil;
+    if ([self.database open]) {
+        FMResultSet * results = [self.database executeQuery:[NSString stringWithFormat:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME} where %@",condition]];
+        if([results next]) {
+            retObj=[self fill{TABLENAME}WithFMResultSet:results];
+        }
+        [self.database close];
+    } 
+    return(retObj);
+}
+-(NSArray *)getAll{TABLENAME}List
+{
+    NSMutableArray * retObjts=[[NSMutableArray alloc] init];
+    if ([self.database open]) {
+        FMResultSet *results = [self.database executeQuery:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME}"];
+        while([results next]) {
+            [retObjts addObject:[self fill{TABLENAME}WithFMResultSet:results]];
+        }
+        [self.database close];
+    } 
+    return([NSArray arrayWithArray:retObjts]);
+}
+-(NSArray *)get{TABLENAME}ListForCondition:(NSString *) condition
+{
+    NSMutableArray * retObjts=[[NSMutableArray alloc] init];
+    if ([self.database open]) {
+        FMResultSet *results = [self.database executeQuery:[NSString stringWithFormat:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME} where %@",condition]];
+        while([results next]) {
+            [retObjts addObject:[self fill{TABLENAME}WithFMResultSet:results]];
+        }
+        [self.database close];
+    } 
+    return([NSArray arrayWithArray:retObjts]);
+
+}
+-({TABLENAME}Helper *)initWithDatabase:(FMDatabase *) db
+{
+    if ([super init]) {
+        self.database=db;
+    }
+    return (self);
+}
+-(void)delete{TABLENAME}ForCondition:(NSString *) condition
+{
+    if ([self.database open]) {
+        [self.database executeUpdate:[NSString stringWithFormat:@"delete from {TABLENAME} where %@",condition]];
+        [self.database close];
+    } 
+
+}
+-(void)insert{TABLENAME}ToDatabase:({TABLENAME} *) obj
+{
+    if ([self.database open]) {
+        [self.database executeUpdate:[NSString stringWithFormat:@"insert into {TABLENAME} ({FIELDLISTSEPERATEDWITHCOMA}) values({FORMATSPECIFIERLIST})",{INSERTOBJLIST}]];
+        [self.database close];
+    } 
+
+}
+-(void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj withCondition:(NSString *) condition
+{
+    if ([self.database open]) {
+        if((!condition) ||  (![condition isEqualToString:@""]))
+        {
+            [self.database executeUpdate:[NSString stringWithFormat:@"update {TABLENAME} set  {UPDATEASSIGNSTR} where %@",{INSERTOBJLISTUPDATEWITHOUTPRIMAY},condition]];
+        }
+        else
+        {
+            [self.database executeUpdate:[NSString stringWithFormat:@"update {TABLENAME} set  {UPDATEASSIGNSTR} {PRIMARYKEYCODTIONFORINSERT}",{INSERTOBJLISTUPDATE}]];
+        }
+        [self.database close];
+    } 
+}
+-(void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj
+{
+    [self update{TABLENAME}ToDatabase:obj withCondition:@""];
+}
 
 @end

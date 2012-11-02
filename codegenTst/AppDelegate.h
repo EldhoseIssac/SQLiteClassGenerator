@@ -22,6 +22,7 @@
     __weak NSButton *_btnGenFile;
     NSString *selectedTableName;
 }
+- (IBAction)generateAllClicked:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 
