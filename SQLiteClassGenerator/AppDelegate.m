@@ -250,7 +250,7 @@
         [cpyList appendString:tmpst];
     }
     
-    NSURL *filPath=[url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@Tble.m",selectedTableName]];
+    NSURL *filPath=[url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@Helper.m",selectedTableName]];
     selectValuesListUpdateWithoutPrimary=[selectValuesListUpdate substringToIndex:selectValuesListUpdate.length-1];
     if (primarykeyValueForInsert) {
         [selectValuesListUpdate appendString:primarykeyValueForInsert];
@@ -305,7 +305,7 @@
     }
     
 
-    NSURL *filPath=[url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@Tble.h",selectedTableName]];
+    NSURL *filPath=[url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@Helper.h",selectedTableName]];
     NSLog(@"%@",filPath.absoluteString);
     headerTemplate=[headerTemplate stringByReplacingOccurrencesOfString:kOBJECTLISTLOCAL  withString:localObjectList];
     headerTemplate=[headerTemplate stringByReplacingOccurrencesOfString:kOBJECTLISTGLOBAL withString:globalObjectList];
