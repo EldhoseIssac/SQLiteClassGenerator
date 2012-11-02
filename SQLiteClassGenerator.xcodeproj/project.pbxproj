@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E7C8663C1643853500099295 /* headerTxt.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7C8663A1643853500099295 /* headerTxt.txt */; };
+		E7C8663D1643853500099295 /* implementTxt.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7C8663B1643853500099295 /* implementTxt.txt */; };
+		E7C866491643854C00099295 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C866401643854C00099295 /* FMDatabase.m */; };
+		E7C8664A1643854C00099295 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C866421643854C00099295 /* FMDatabaseAdditions.m */; };
+		E7C8664B1643854C00099295 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C866441643854C00099295 /* FMDatabasePool.m */; };
+		E7C8664C1643854C00099295 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C866461643854C00099295 /* FMDatabaseQueue.m */; };
+		E7C8664D1643854C00099295 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C866481643854C00099295 /* FMResultSet.m */; };
+		E7C866501643858600099295 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8664F1643858600099295 /* AppDelegate.m */; };
+		E7C866531643859E00099295 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C866511643859E00099295 /* MainMenu.xib */; };
+		E7C86657164385EF00099295 /* SQLiteClassGenerator-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7C86655164385EF00099295 /* SQLiteClassGenerator-Info.plist */; };
+		E7C8665A1643862100099295 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7C866581643862100099295 /* InfoPlist.strings */; };
+		E7C8665C1643863000099295 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8665B1643863000099295 /* main.m */; };
+		E7C8665F1643864900099295 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7C8665D1643864900099295 /* Credits.rtf */; };
+		E7E3257A163F8D840076C9A1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E32579163F8D840076C9A1 /* Cocoa.framework */; };
+		E7E32593163F8D840076C9A1 /* codegenTst.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7E32591163F8D840076C9A1 /* codegenTst.xcdatamodeld */; };
+		E7E3259A163F94C30076C9A1 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E32599163F94C30076C9A1 /* libsqlite3.0.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E7C8663A1643853500099295 /* headerTxt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = headerTxt.txt; sourceTree = "<group>"; };
+		E7C8663B1643853500099295 /* implementTxt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = implementTxt.txt; sourceTree = "<group>"; };
+		E7C8663F1643854C00099295 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		E7C866401643854C00099295 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		E7C866411643854C00099295 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		E7C866421643854C00099295 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		E7C866431643854C00099295 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		E7C866441643854C00099295 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		E7C866451643854C00099295 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		E7C866461643854C00099295 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		E7C866471643854C00099295 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		E7C866481643854C00099295 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		E7C8664E1643858600099295 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SQLiteClassGenerator/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		E7C8664F1643858600099295 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SQLiteClassGenerator/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		E7C866521643859E00099295 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SQLiteClassGenerator/en.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
+		E7C86654164385C800099295 /* codeGenHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = codeGenHeader.h; path = SQLiteClassGenerator/codeGenHeader.h; sourceTree = SOURCE_ROOT; };
+		E7C86655164385EF00099295 /* SQLiteClassGenerator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SQLiteClassGenerator-Info.plist"; path = "SQLiteClassGenerator/SQLiteClassGenerator-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E7C86656164385EF00099295 /* SQLiteClassGenerator-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SQLiteClassGenerator-Prefix.pch"; path = "SQLiteClassGenerator/SQLiteClassGenerator-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		E7C866591643862100099295 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = SQLiteClassGenerator/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		E7C8665B1643863000099295 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SQLiteClassGenerator/main.m; sourceTree = SOURCE_ROOT; };
+		E7C8665E1643864900099295 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = SQLiteClassGenerator/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
+		E7E32575163F8D840076C9A1 /* SQLiteClassGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SQLiteClassGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7E32579163F8D840076C9A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E7E3257C163F8D840076C9A1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E7E3257D163F8D840076C9A1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E7E3257E163F8D840076C9A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E7E32592163F8D840076C9A1 /* codegenTst.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = codegenTst.xcdatamodel; sourceTree = "<group>"; };
+		E7E32599163F94C30076C9A1 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7E32572163F8D840076C9A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7E3259A163F94C30076C9A1 /* libsqlite3.0.dylib in Frameworks */,
+				E7E3257A163F8D840076C9A1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E7C866391643853500099295 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				E7C8663A1643853500099295 /* headerTxt.txt */,
+				E7C8663B1643853500099295 /* implementTxt.txt */,
+			);
+			name = Templates;
+			path = SQLiteClassGenerator/Templates;
+			sourceTree = SOURCE_ROOT;
+		};
+		E7C8663E1643854C00099295 /* fmdFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E7C8663F1643854C00099295 /* FMDatabase.h */,
+				E7C866401643854C00099295 /* FMDatabase.m */,
+				E7C866411643854C00099295 /* FMDatabaseAdditions.h */,
+				E7C866421643854C00099295 /* FMDatabaseAdditions.m */,
+				E7C866431643854C00099295 /* FMDatabasePool.h */,
+				E7C866441643854C00099295 /* FMDatabasePool.m */,
+				E7C866451643854C00099295 /* FMDatabaseQueue.h */,
+				E7C866461643854C00099295 /* FMDatabaseQueue.m */,
+				E7C866471643854C00099295 /* FMResultSet.h */,
+				E7C866481643854C00099295 /* FMResultSet.m */,
+			);
+			name = fmdFiles;
+			path = SQLiteClassGenerator/fmdFiles;
+			sourceTree = SOURCE_ROOT;
+		};
+		E7E3256A163F8D840076C9A1 = {
+			isa = PBXGroup;
+			children = (
+				E7E3257F163F8D840076C9A1 /* SQLiteClassGenerator */,
+				E7E32578163F8D840076C9A1 /* Frameworks */,
+				E7E32576163F8D840076C9A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E7E32576163F8D840076C9A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7E32575163F8D840076C9A1 /* SQLiteClassGenerator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7E32578163F8D840076C9A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7E32579163F8D840076C9A1 /* Cocoa.framework */,
+				E7E3257B163F8D840076C9A1 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7E3257B163F8D840076C9A1 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7E32599163F94C30076C9A1 /* libsqlite3.0.dylib */,
+				E7E3257C163F8D840076C9A1 /* AppKit.framework */,
+				E7E3257D163F8D840076C9A1 /* CoreData.framework */,
+				E7E3257E163F8D840076C9A1 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E7E3257F163F8D840076C9A1 /* SQLiteClassGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				E7C86654164385C800099295 /* codeGenHeader.h */,
+				E7C866391643853500099295 /* Templates */,
+				E7C8663E1643854C00099295 /* fmdFiles */,
+				E7C8664E1643858600099295 /* AppDelegate.h */,
+				E7C8664F1643858600099295 /* AppDelegate.m */,
+				E7C866511643859E00099295 /* MainMenu.xib */,
+				E7E32591163F8D840076C9A1 /* codegenTst.xcdatamodeld */,
+				E7E32580163F8D840076C9A1 /* Supporting Files */,
+			);
+			name = SQLiteClassGenerator;
+			path = codegenTst;
+			sourceTree = "<group>";
+		};
+		E7E32580163F8D840076C9A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E7C86655164385EF00099295 /* SQLiteClassGenerator-Info.plist */,
+				E7C86656164385EF00099295 /* SQLiteClassGenerator-Prefix.pch */,
+				E7C866581643862100099295 /* InfoPlist.strings */,
+				E7C8665B1643863000099295 /* main.m */,
+				E7C8665D1643864900099295 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E7E32574163F8D840076C9A1 /* SQLiteClassGenerator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7E32596163F8D840076C9A1 /* Build configuration list for PBXNativeTarget "SQLiteClassGenerator" */;
+			buildPhases = (
+				E7E32571163F8D840076C9A1 /* Sources */,
+				E7E32572163F8D840076C9A1 /* Frameworks */,
+				E7E32573163F8D840076C9A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SQLiteClassGenerator;
+			productName = codegenTst;
+			productReference = E7E32575163F8D840076C9A1 /* SQLiteClassGenerator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7E3256C163F8D840076C9A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Islet Systems";
+			};
+			buildConfigurationList = E7E3256F163F8D840076C9A1 /* Build configuration list for PBXProject "SQLiteClassGenerator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E7E3256A163F8D840076C9A1;
+			productRefGroup = E7E32576163F8D840076C9A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E7E32574163F8D840076C9A1 /* SQLiteClassGenerator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E7E32573163F8D840076C9A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7C8663C1643853500099295 /* headerTxt.txt in Resources */,
+				E7C8663D1643853500099295 /* implementTxt.txt in Resources */,
+				E7C866531643859E00099295 /* MainMenu.xib in Resources */,
+				E7C86657164385EF00099295 /* SQLiteClassGenerator-Info.plist in Resources */,
+				E7C8665A1643862100099295 /* InfoPlist.strings in Resources */,
+				E7C8665F1643864900099295 /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7E32571163F8D840076C9A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7E32593163F8D840076C9A1 /* codegenTst.xcdatamodeld in Sources */,
+				E7C866491643854C00099295 /* FMDatabase.m in Sources */,
+				E7C8664A1643854C00099295 /* FMDatabaseAdditions.m in Sources */,
+				E7C8664B1643854C00099295 /* FMDatabasePool.m in Sources */,
+				E7C8664C1643854C00099295 /* FMDatabaseQueue.m in Sources */,
+				E7C8664D1643854C00099295 /* FMResultSet.m in Sources */,
+				E7C866501643858600099295 /* AppDelegate.m in Sources */,
+				E7C8665C1643863000099295 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E7C866511643859E00099295 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7C866521643859E00099295 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		E7C866581643862100099295 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7C866591643862100099295 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E7C8665D1643864900099295 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7C8665E1643864900099295 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E7E32594163F8D840076C9A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E7E32595163F8D840076C9A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E7E32597163F8D840076C9A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SQLiteClassGenerator/SQLiteClassGenerator-Prefix.pch";
+				INFOPLIST_FILE = "SQLiteClassGenerator/SQLiteClassGenerator-Info.plist";
+				PRODUCT_NAME = SQLiteClassGenerator;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E7E32598163F8D840076C9A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SQLiteClassGenerator/SQLiteClassGenerator-Prefix.pch";
+				INFOPLIST_FILE = "SQLiteClassGenerator/SQLiteClassGenerator-Info.plist";
+				PRODUCT_NAME = SQLiteClassGenerator;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E7E3256F163F8D840076C9A1 /* Build configuration list for PBXProject "SQLiteClassGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7E32594163F8D840076C9A1 /* Debug */,
+				E7E32595163F8D840076C9A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7E32596163F8D840076C9A1 /* Build configuration list for PBXNativeTarget "SQLiteClassGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7E32597163F8D840076C9A1 /* Debug */,
+				E7E32598163F8D840076C9A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E7E32591163F8D840076C9A1 /* codegenTst.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E7E32592163F8D840076C9A1 /* codegenTst.xcdatamodel */,
+			);
+			currentVersion = E7E32592163F8D840076C9A1 /* codegenTst.xcdatamodel */;
+			path = codegenTst.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E7E3256C163F8D840076C9A1 /* Project object */;
+}
