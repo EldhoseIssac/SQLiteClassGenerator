@@ -16,12 +16,10 @@
 		E7C8664D1643854C00099295 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C866481643854C00099295 /* FMResultSet.m */; };
 		E7C866501643858600099295 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8664F1643858600099295 /* AppDelegate.m */; };
 		E7C866531643859E00099295 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C866511643859E00099295 /* MainMenu.xib */; };
-		E7C86657164385EF00099295 /* SQLiteClassGenerator-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7C86655164385EF00099295 /* SQLiteClassGenerator-Info.plist */; };
 		E7C8665A1643862100099295 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7C866581643862100099295 /* InfoPlist.strings */; };
 		E7C8665C1643863000099295 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8665B1643863000099295 /* main.m */; };
 		E7C8665F1643864900099295 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7C8665D1643864900099295 /* Credits.rtf */; };
 		E7E3257A163F8D840076C9A1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E32579163F8D840076C9A1 /* Cocoa.framework */; };
-		E7E32593163F8D840076C9A1 /* codegenTst.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7E32591163F8D840076C9A1 /* codegenTst.xcdatamodeld */; };
 		E7E3259A163F94C30076C9A1 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E32599163F94C30076C9A1 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
@@ -216,7 +214,6 @@
 				E7C8663C1643853500099295 /* headerTxt.txt in Resources */,
 				E7C8663D1643853500099295 /* implementTxt.txt in Resources */,
 				E7C866531643859E00099295 /* MainMenu.xib in Resources */,
-				E7C86657164385EF00099295 /* SQLiteClassGenerator-Info.plist in Resources */,
 				E7C8665A1643862100099295 /* InfoPlist.strings in Resources */,
 				E7C8665F1643864900099295 /* Credits.rtf in Resources */,
 			);
@@ -229,7 +226,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7E32593163F8D840076C9A1 /* codegenTst.xcdatamodeld in Sources */,
 				E7C866491643854C00099295 /* FMDatabase.m in Sources */,
 				E7C8664A1643854C00099295 /* FMDatabaseAdditions.m in Sources */,
 				E7C8664B1643854C00099295 /* FMDatabasePool.m in Sources */,

@@ -28,7 +28,8 @@
 
 
 #define kOBJECTLISTLOCALITEM @"\t{NSTYPE}  _{OBJECTNAME};\n"
-#define kOBJECTLISTGLOBALITEM @"@property (nonatomic) {NSTYPE}  {OBJECTNAME};\n"
+#define kOBJECTLISTGLOBALITEM @"@property (nonatomic,strong) {NSTYPE}  {OBJECTNAME};\n"
 #define kSYNTHESIZELISTITEM @"@synthesize {OBJECTNAME}=_{OBJECTNAME};\n"
 #define kLOADOBJECTWITHFIELDSITEMS @"\tretObj.{OBJECTNAME} = [FMset {FUNCTIONFORDATATYPE}:@\"{OBJECTNAME}\"];\n"
+
 #endif

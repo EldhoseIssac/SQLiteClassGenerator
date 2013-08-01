@@ -101,7 +101,7 @@ static {TABLENAME}Helper *sharedInstance;
 -(void)insert{TABLENAME}ToDatabase:({TABLENAME} *) obj
 {
     if ([self.database open]) {
-        [self.database executeUpdate:[NSString stringWithFormat:@"insert into {TABLENAME} ({FIELDLISTSEPERATEDWITHCOMA}) values({FORMATSPECIFIERLIST})",{INSERTOBJLIST}]];
+        [self.database executeUpdate:@"insert into {TABLENAME} ({FIELDLISTSEPERATEDWITHCOMA}) values({FORMATSPECIFIERLIST})",{INSERTOBJLIST}];
         [self.database close];
     } 
 
@@ -111,11 +111,11 @@ static {TABLENAME}Helper *sharedInstance;
     if ([self.database open]) {
         if((!condition) ||  (![condition isEqualToString:@""]))
         {
-            [self.database executeUpdate:[NSString stringWithFormat:@"update {TABLENAME} set  {UPDATEASSIGNSTR} where %@",{INSERTOBJLISTUPDATEWITHOUTPRIMAY},condition]];
+            [self.database executeUpdate:@"update {TABLENAME} set  {UPDATEASSIGNSTR} where %@",{INSERTOBJLISTUPDATEWITHOUTPRIMAY},condition]];
         }
         else
         {
-            [self.database executeUpdate:[NSString stringWithFormat:@"update {TABLENAME} set  {UPDATEASSIGNSTR} {PRIMARYKEYCODTIONFORINSERT}",{INSERTOBJLISTUPDATE}]];
+            [self.database executeUpdate:@"update {TABLENAME} set  {UPDATEASSIGNSTR} {PRIMARYKEYCODTIONFORINSERT}",{INSERTOBJLISTUPDATE}];
         }
         [self.database close];
     } 

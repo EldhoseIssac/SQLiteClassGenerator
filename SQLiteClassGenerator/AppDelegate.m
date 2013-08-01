@@ -21,6 +21,12 @@
    
     [_brwserTableList setPathSeparator:@"/"];
     [_btnGenFile setEnabled:FALSE];
+    NSString * srt=@"Helooo welc sd";
+    NSLog(@"%@",[srt stringByReplacingOccurrencesOfString:@"welc" withString:@""]);
+    NSDateFormatter* dateFormatters=[[NSDateFormatter alloc] init];
+    [dateFormatters setDateFormat:@"EEEE,MMMM d,yyyy"];
+    NSLog(@"%@",[dateFormatters stringFromDate:nil]);
+
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "islet.codegenTst" in the user's Application Support directory.
@@ -198,7 +204,7 @@
     NSString * primaryKeyCoditionForInsert=nil;
     NSString * primarykeyValueForInsert=nil;
     NSString * selectValuesListUpdateWithoutPrimary=nil;
-    for (NSString *key in [fieldNameAndType allKeys]) {
+      for (NSString *key in [fieldNameAndType allKeys]) {
         [keyList appendFormat:@"%@,",key];
        
         NSString *tmpst=[kSYNTHESIZELISTITEM stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];

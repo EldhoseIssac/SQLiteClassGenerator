@@ -15,7 +15,6 @@
 {OBJECTLISTLOCAL}
 }
 {OBJECTLISTGLOBAL}
-
 @end
 @interface {TABLENAME}Helper : NSObject
 @property (nonatomic, strong) FMDatabase *database;
