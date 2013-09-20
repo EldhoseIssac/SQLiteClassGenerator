@@ -201,59 +201,85 @@
     NSMutableString * insertValuesList=[[NSMutableString alloc] init];
     NSMutableString * selectValuesList=[[NSMutableString alloc] init];
     NSMutableString * selectValuesListUpdate=[[NSMutableString alloc] init];
+    NSMutableString * constantList = [[NSMutableString alloc] init];
+    NSMutableString * dicTonaryList = [[NSMutableString alloc] init];
+    NSMutableString * objectList = [[NSMutableString alloc] init];
+    
+    
     NSString * primaryKeyCoditionForInsert=nil;
     NSString * primarykeyValueForInsert=nil;
     NSString * selectValuesListUpdateWithoutPrimary=nil;
       for (NSString *key in [fieldNameAndType allKeys]) {
         [keyList appendFormat:@"%@,",key];
-       
         NSString *tmpst=[kSYNTHESIZELISTITEM stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];
         [syncthesizeObjectList appendString:tmpst];
         tmpst=[kLOADOBJECTWITHFIELDSITEMS stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];
         NSString * typeAll=[fieldNameAndType objectForKey:key];
         NSString *typ=[[typeAll componentsSeparatedByString:@" "] objectAtIndex:1];
+          NSString * toDictonary = [kOBJECTASDICTONARY stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];
+          NSString * toObject= [kDICTONARYTOOBJECT stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];
         if ([typ isEqualToString:@"TEXT"]) {
             tmpst=[tmpst stringByReplacingOccurrencesOfString:kFUNCTIONFORDATATYPE withString:@"stringForColumn"];
-            [fieldTypeLst appendString:@"'%@',"];
+            [fieldTypeLst appendString:@"?,"];
             if ([typeAll rangeOfString:@"PRIMARY"].location == NSNotFound) {
-                [selectValuesList appendFormat:@"%@ = '%@',",key,@"%@"];
+                [selectValuesList appendFormat:@"%@ = %@,",key,@"%@"];
                 [selectValuesListUpdate appendFormat:@"obj.%@,",key];
             }
             else{
                 primaryKeyCoditionForInsert=[NSString stringWithFormat:@" where %@ = '%@' ",key,@"%@"];
                 primarykeyValueForInsert=[NSString stringWithFormat:@"obj.%@,",key];
             }
-            
+            [insertValuesList appendFormat:@"obj.%@,",key];
+            toObject = [toObject stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSString"];
         }
         else if ([typ isEqualToString:@"INTEGER"])
         {
             tmpst=[tmpst stringByReplacingOccurrencesOfString:kFUNCTIONFORDATATYPE withString:@"intForColumn"];
-            [fieldTypeLst appendString:@"'\%d',"];
+            [fieldTypeLst appendString:@"?,"];
             if ([typeAll rangeOfString:@"PRIMARY"].location == NSNotFound) {
-                [selectValuesList appendFormat:@"%@ = '%@',",key,@"%d"];
+                [selectValuesList appendFormat:@"%@ = %@,",key,@"%d"];
                 [selectValuesListUpdate appendFormat:@"obj.%@,",key];
             }
             else{
-                primaryKeyCoditionForInsert=[NSString stringWithFormat:@" where %@ = '%@' ",key,@"%d"];
+                primaryKeyCoditionForInsert=[NSString stringWithFormat:@" where %@ = %@ ",key,@"%d"];
                 primarykeyValueForInsert=[NSString stringWithFormat:@"obj.%@,",key];
             }
-            
+            [insertValuesList appendFormat:@"@(obj.%@),",key];
+            toObject = [toObject stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSinteger"];
         }
-        else
-        {
-            tmpst=[tmpst stringByReplacingOccurrencesOfString:kFUNCTIONFORDATATYPE withString:@"dataNoCopyForColumn"];
-            [fieldTypeLst appendString:@"'\%@',"];
+        else if ([typ isEqualToString:@"DATETIME"]) {
+            tmpst=[tmpst stringByReplacingOccurrencesOfString:kFUNCTIONFORDATATYPE withString:@"dateForColumn"];
+            [fieldTypeLst appendString:@"?,"];
             if ([typeAll rangeOfString:@"PRIMARY"].location == NSNotFound) {
-                [selectValuesList appendFormat:@"%@ = '%@',",key,@"%@"];
+                [selectValuesList appendFormat:@"%@ = %@,",key,@"%@"];
                 [selectValuesListUpdate appendFormat:@"obj.%@,",key];
             }
             else{
                 primaryKeyCoditionForInsert=[NSString stringWithFormat:@" where %@ = '%@' ",key,@"%@"];
                 primarykeyValueForInsert=[NSString stringWithFormat:@"obj.%@,",key];
             }
+            [insertValuesList appendFormat:@"obj.%@,",key];
+            toObject = [toObject stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSDate"];
         }
-        [insertValuesList appendFormat:@"obj.%@,",key];
+        else
+        {
+            tmpst=[tmpst stringByReplacingOccurrencesOfString:kFUNCTIONFORDATATYPE withString:@"dataNoCopyForColumn"];
+            [fieldTypeLst appendString:@"?,"];
+            if ([typeAll rangeOfString:@"PRIMARY"].location == NSNotFound) {
+                [selectValuesList appendFormat:@"%@ = %@,",key,@"%@"];
+                [selectValuesListUpdate appendFormat:@"obj.%@,",key];
+            }
+            else{
+                primaryKeyCoditionForInsert=[NSString stringWithFormat:@" where %@ = '%@' ",key,@"%@"];
+                primarykeyValueForInsert=[NSString stringWithFormat:@"obj.%@,",key];
+            }
+            [insertValuesList appendFormat:@"obj.%@,",key];
+            toObject = [toObject stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSString"];
+        }
+        
         [cpyList appendString:tmpst];
+          [dicTonaryList appendString:toDictonary];
+          [objectList appendString:toObject];
     }
     
     NSURL *filPath=[url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@Helper.m",selectedTableName]];
@@ -261,6 +287,8 @@
     if (primarykeyValueForInsert) {
         [selectValuesListUpdate appendString:primarykeyValueForInsert];
         implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kPRIMARYKEYCODTIONFORINSERT withString:primaryKeyCoditionForInsert];
+    }else{
+        implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kPRIMARYKEYCODTIONFORINSERT withString:@""];
     }
     implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kSYNTHESIZELIST  withString:syncthesizeObjectList];
     implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kFIELDLISTSEPERATEDWITHCOMA withString:[keyList substringToIndex:keyList.length-1]];
@@ -270,6 +298,10 @@
     implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kUPDATEASSIGNSTR withString:[selectValuesList substringToIndex:selectValuesList.length-1]];
     implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kINSERTOBJLISTUPDATE withString:[selectValuesListUpdate substringToIndex:selectValuesListUpdate.length-1]];
     implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kINSERTOBJLISTUPDATEWITHOUTPRIMAY withString:selectValuesListUpdateWithoutPrimary];
+    
+    implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kNAMECONSTANTLIST withString:constantList];
+    implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kOBJECTASDICTONARYLIST withString:dicTonaryList];
+    implementTemplate=[implementTemplate stringByReplacingOccurrencesOfString:kDICTONARYTOOBJECTLIST withString:objectList];
     
     
     NSLog(@"%@",implementTemplate);
@@ -288,10 +320,14 @@
     headerTemplate=[headerTemplate stringByReplacingOccurrencesOfString:kCREATEQUERY withString:[tableListAndCreateQuery objectForKey:selectedTableName]];
     NSMutableString *localObjectList=[[NSMutableString alloc] init];
     NSMutableString *globalObjectList=[[NSMutableString alloc] init];
+    NSMutableString *constantList = [[NSMutableString alloc] init];
     for (NSString *key in [fieldNameAndType allKeys]) {
         NSString *typ=[[[fieldNameAndType objectForKey:key] componentsSeparatedByString:@" "] objectAtIndex:1];
         NSString *tmpst=[kOBJECTLISTLOCALITEM stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];
         NSString *tmpGlob=[kOBJECTLISTGLOBALITEM stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];
+        NSString * constSt = [KNAMECONSTANTHEADER stringByReplacingOccurrencesOfString:kOBJECTNAME withString:key];
+        constSt = [constSt stringByReplacingOccurrencesOfString:kTABLENAME withString:selectedTableName];
+        [constantList appendString:constSt];
         if ([typ isEqualToString:@"TEXT"]) {
             tmpst=[tmpst stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSString *"];
             tmpGlob=[tmpGlob stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSString *"];
@@ -300,7 +336,12 @@
         {
             tmpst=[tmpst stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSInteger  "];
             tmpGlob=[tmpGlob stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSInteger  "];
+        }else if ([typ isEqualToString:@"DATETIME"])
+        {
+            tmpst=[tmpst stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSDate *"];
+            tmpGlob=[tmpGlob stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSDate *"];
         }
+
         else
         {
             tmpst=[tmpst stringByReplacingOccurrencesOfString:kNSTYPE withString:@"NSObject  *"];
@@ -308,6 +349,7 @@
         }
         [localObjectList appendString:tmpst];
         [globalObjectList appendString:tmpGlob];
+        
     }
     
 
@@ -315,6 +357,8 @@
     NSLog(@"%@",filPath.absoluteString);
     headerTemplate=[headerTemplate stringByReplacingOccurrencesOfString:kOBJECTLISTLOCAL  withString:localObjectList];
     headerTemplate=[headerTemplate stringByReplacingOccurrencesOfString:kOBJECTLISTGLOBAL withString:globalObjectList];
+    headerTemplate=[headerTemplate stringByReplacingOccurrencesOfString:kNAMECONSTANTLIST withString:constantList];
+    
     NSLog(@"%@",headerTemplate);
     [headerTemplate writeToURL:filPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:&err];
     if (err) {
@@ -335,6 +379,9 @@
         
         FMResultSet *results = [database executeQuery:@"select name,sql from sqlite_master where type='table'"];
         while([results next]) {
+            if([[results stringForColumn:@"name"] isEqualToString: @"sqlite_sequence"]){
+                continue;
+            }
             NSString *name = [results stringForColumn:@"name"];
             NSString *sql  = [[results stringForColumn:@"sql"] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             [tableListAndCreateQuery setValue:sql forKeyPath:name];
@@ -435,5 +482,9 @@
         }
       }
 
+}
+- (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)application
+{
+    return YES;
 }
 @end

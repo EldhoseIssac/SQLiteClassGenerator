@@ -19,6 +19,7 @@
 		E7C8665A1643862100099295 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7C866581643862100099295 /* InfoPlist.strings */; };
 		E7C8665C1643863000099295 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8665B1643863000099295 /* main.m */; };
 		E7C8665F1643864900099295 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7C8665D1643864900099295 /* Credits.rtf */; };
+		E7E1B93917E8273400EDF769 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E1B93817E8273400EDF769 /* Application.m */; };
 		E7E3257A163F8D840076C9A1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E32579163F8D840076C9A1 /* Cocoa.framework */; };
 		E7E3259A163F94C30076C9A1 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E32599163F94C30076C9A1 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 		E7C866591643862100099295 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = SQLiteClassGenerator/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		E7C8665B1643863000099295 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SQLiteClassGenerator/main.m; sourceTree = SOURCE_ROOT; };
 		E7C8665E1643864900099295 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = SQLiteClassGenerator/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
+		E7E1B93717E8273400EDF769 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = SQLiteClassGenerator/Application.h; sourceTree = SOURCE_ROOT; };
+		E7E1B93817E8273400EDF769 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Application.m; path = SQLiteClassGenerator/Application.m; sourceTree = SOURCE_ROOT; };
 		E7E32575163F8D840076C9A1 /* SQLiteClassGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SQLiteClassGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E32579163F8D840076C9A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E7E3257C163F8D840076C9A1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -142,6 +145,8 @@
 				E7C8664F1643858600099295 /* AppDelegate.m */,
 				E7C866511643859E00099295 /* MainMenu.xib */,
 				E7E32591163F8D840076C9A1 /* codegenTst.xcdatamodeld */,
+				E7E1B93717E8273400EDF769 /* Application.h */,
+				E7E1B93817E8273400EDF769 /* Application.m */,
 				E7E32580163F8D840076C9A1 /* Supporting Files */,
 			);
 			name = SQLiteClassGenerator;
@@ -233,6 +238,7 @@
 				E7C8664D1643854C00099295 /* FMResultSet.m in Sources */,
 				E7C866501643858600099295 /* AppDelegate.m in Sources */,
 				E7C8665C1643863000099295 /* main.m in Sources */,
+				E7E1B93917E8273400EDF769 /* Application.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

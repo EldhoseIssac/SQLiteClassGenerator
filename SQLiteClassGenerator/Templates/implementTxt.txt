@@ -1,30 +1,51 @@
 //
 //  {TABLENAME}Helper.m
 //
-//  Created by Eldhose on 26/10/12.
+//  Created by Eldhose 
 //  Copyright (c) 2012 Islet Systems. All rights reserved.
 //
 
 #import "{TABLENAME}Helper.h"
 @implementation {TABLENAME}
-{SYNTHESIZELIST}
+
+-(NSDictionary *)asDictonary{
+    NSMutableDictionary * aMutableDic=[[NSMutableDictionary alloc] init];
+{OBJECTASDICTONARYLIST}
+    return [NSDictionary dictionaryWithDictionary:aMutableDic];
+    
+}
+-(id)initWithDictonary:(NSDictionary *) aDictonary
+{
+    self=[super init];
+    if (self) {
+{DICTONARYTOOBJECTLIST}
+    }
+    return self;
+}
+
 @end
 
 @implementation {TABLENAME}Helper
-@synthesize database=_database;
+
+
 static {TABLENAME}Helper *sharedInstance;
-+({TABLENAME}Helper *) sharedInstance {
++ ({TABLENAME}Helper *) sharedInstance {
     if (!sharedInstance) {
         sharedInstance = [[{TABLENAME}Helper alloc] init];
     }
     return sharedInstance;
 }
 
--(BOOL)isDataBaseChanged
+- (BOOL)isDataBaseChanged
 {
     BOOL result=NO;
-    if ([self.database open]) {
-        FMResultSet *results = [self.database executeQuery:@"select sql from sqlite_master where type='table' and name ='{TABLENAME}'"];
+    if(self.databasePath.length<1){
+        NSLog(@"No database Path");
+        return FALSE;
+    }
+    FMDatabase *fmDatabase=[FMDatabase databaseWithPath:self.databasePath];
+    if ([fmDatabase open]) {
+        FMResultSet *results = [fmDatabase executeQuery:@"select sql from sqlite_master where type='table' and name ='{TABLENAME}'"];
         if([results next]) {
             NSString *sql  = [results stringForColumn:@"sql"];
             if([sql isEqualToString:{TABLENAME}CreateQuery])
@@ -34,93 +55,128 @@ static {TABLENAME}Helper *sharedInstance;
         }
         else
         {
-            [self.database update:{TABLENAME}CreateQuery withErrorAndBindings:nil];
+            [fmDatabase update:{TABLENAME}CreateQuery withErrorAndBindings:nil];
         }
-        [self.database close];
+        [fmDatabase close];
     } 
     return(result);
 }
--({TABLENAME} *)fill{TABLENAME}WithFMResultSet:(FMResultSet *) FMset
+- ({TABLENAME} *)fill{TABLENAME}WithFMResultSet:(FMResultSet *) FMset
 {
     {TABLENAME} * retObj=[[{TABLENAME} alloc] init];
 {LOADOBJECTWITHFIELDS} 
     return(retObj);
 }
--({TABLENAME} *)get{TABLENAME}ForCondition:(NSString *) condition
+- ({TABLENAME} *)get{TABLENAME}ForCondition:(NSString *) condition
 {
     {TABLENAME} * retObj=nil;
-    if ([self.database open]) {
-        FMResultSet * results = [self.database executeQuery:[NSString stringWithFormat:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME} where %@",condition]];
+    if(self.databasePath.length<1){
+        NSLog(@"No database Path");
+        return nil;
+    }
+    FMDatabase *fmDatabase=[FMDatabase databaseWithPath:self.databasePath];
+
+    if ([fmDatabase open]) {
+        FMResultSet * results = [fmDatabase executeQuery:[NSString stringWithFormat:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME} where %@",condition]];
         if([results next]) {
             retObj=[self fill{TABLENAME}WithFMResultSet:results];
         }
-        [self.database close];
+        [fmDatabase close];
     } 
     return(retObj);
 }
--(NSArray *)getAll{TABLENAME}List
+- (NSArray *)getAll{TABLENAME}List
 {
     NSMutableArray * retObjts=[[NSMutableArray alloc] init];
-    if ([self.database open]) {
-        FMResultSet *results = [self.database executeQuery:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME}"];
-        while([results next]) {
-            [retObjts addObject:[self fill{TABLENAME}WithFMResultSet:results]];
-        }
-        [self.database close];
-    } 
-    return([NSArray arrayWithArray:retObjts]);
-}
--(NSArray *)get{TABLENAME}ListForCondition:(NSString *) condition
-{
-    NSMutableArray * retObjts=[[NSMutableArray alloc] init];
-    if ([self.database open]) {
-        FMResultSet *results = [self.database executeQuery:[NSString stringWithFormat:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME} where %@",condition]];
-        while([results next]) {
-            [retObjts addObject:[self fill{TABLENAME}WithFMResultSet:results]];
-        }
-        [self.database close];
-    } 
-    return([NSArray arrayWithArray:retObjts]);
-
-}
--({TABLENAME}Helper *)initWithDatabase:(FMDatabase *) db
-{
-    if ([super init]) {
-        self.database=db;
+    if(self.databasePath.length<1){
+        NSLog(@"No database Path");
+        return nil;
     }
-    return (self);
+    FMDatabase *fmDatabase=[FMDatabase databaseWithPath:self.databasePath];
+
+    if ([fmDatabase open]) {
+        FMResultSet *results = [fmDatabase executeQuery:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME}"];
+        while([results next]) {
+            [retObjts addObject:[self fill{TABLENAME}WithFMResultSet:results]];
+        }
+        [fmDatabase close];
+    } 
+    return([NSArray arrayWithArray:retObjts]);
 }
--(void)delete{TABLENAME}ForCondition:(NSString *) condition
+- (NSArray *)get{TABLENAME}ListForCondition:(NSString *) condition
 {
-    if ([self.database open]) {
-        [self.database executeUpdate:[NSString stringWithFormat:@"delete from {TABLENAME} where %@",condition]];
-        [self.database close];
+    NSMutableArray * retObjts=[[NSMutableArray alloc] init];
+    if(self.databasePath.length<1){
+        NSLog(@"No database Path");
+        return nil;
+    }
+    FMDatabase *fmDatabase=[FMDatabase databaseWithPath:self.databasePath];
+
+    if ([fmDatabase open]) {
+        FMResultSet *results = [fmDatabase executeQuery:[NSString stringWithFormat:@"select {FIELDLISTSEPERATEDWITHCOMA} from {TABLENAME} where %@",condition]];
+        while([results next]) {
+            [retObjts addObject:[self fill{TABLENAME}WithFMResultSet:results]];
+        }
+        [fmDatabase close];
+    } 
+    return([NSArray arrayWithArray:retObjts]);
+
+}
+
+- (void)delete{TABLENAME}ForCondition:(NSString *) condition
+{
+    if(self.databasePath.length<1){
+        NSLog(@"No database Path");
+        return ;
+    }
+    FMDatabase *fmDatabase=[FMDatabase databaseWithPath:self.databasePath];
+
+    if ([fmDatabase open]) {
+        if (condition.length<3) {
+            [fmDatabase executeUpdate:@"delete from {TABLENAME}"];
+        }else{
+            [fmDatabase executeUpdate:[NSString stringWithFormat:@"delete from {TABLENAME} where %@",condition]];
+        }
+        [fmDatabase close];
     } 
 
 }
--(void)insert{TABLENAME}ToDatabase:({TABLENAME} *) obj
+- (void)insert{TABLENAME}ToDatabase:({TABLENAME} *) obj
 {
-    if ([self.database open]) {
-        [self.database executeUpdate:@"insert into {TABLENAME} ({FIELDLISTSEPERATEDWITHCOMA}) values({FORMATSPECIFIERLIST})",{INSERTOBJLIST}];
-        [self.database close];
+    if(self.databasePath.length<1){
+        NSLog(@"No database Path");
+        return ;
+    }
+    FMDatabase *fmDatabase=[FMDatabase databaseWithPath:self.databasePath];
+
+    if ([fmDatabase open]) {
+        [fmDatabase executeUpdate:@"insert into {TABLENAME} ({FIELDLISTSEPERATEDWITHCOMA}) values({FORMATSPECIFIERLIST})",{INSERTOBJLIST}];
+        obj.{TABLENAME}Id = [fmDatabase lastInsertRowId];
+        [fmDatabase close];
     } 
 
 }
--(void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj withCondition:(NSString *) condition
+- (void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj withCondition:(NSString *) condition
 {
-    if ([self.database open]) {
+    if(self.databasePath.length<1){
+        NSLog(@"No database Path");
+        return;
+    }
+    FMDatabase *fmDatabase=[FMDatabase databaseWithPath:self.databasePath];
+
+    if ([fmDatabase open]) {
         if((!condition) ||  (![condition isEqualToString:@""]))
         {
-            [self.database executeUpdate:@"update {TABLENAME} set  {UPDATEASSIGNSTR} where %@",{INSERTOBJLISTUPDATEWITHOUTPRIMAY},condition]];
+            [fmDatabase executeUpdateWithFormat:@"update {TABLENAME} set  {UPDATEASSIGNSTR} where %@",{INSERTOBJLISTUPDATEWITHOUTPRIMAY},condition];
         }
         else
         {
-            [self.database executeUpdate:@"update {TABLENAME} set  {UPDATEASSIGNSTR} {PRIMARYKEYCODTIONFORINSERT}",{INSERTOBJLISTUPDATE}];
+            [fmDatabase executeUpdateWithFormat:@"update {TABLENAME} set  {UPDATEASSIGNSTR} {PRIMARYKEYCODTIONFORINSERT}",{INSERTOBJLISTUPDATE}];
         }
-        [self.database close];
+        [fmDatabase close];
     } 
 }
--(void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj
+- (void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj
 {
     [self update{TABLENAME}ToDatabase:obj withCondition:@""];
 }

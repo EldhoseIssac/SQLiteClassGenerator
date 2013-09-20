@@ -1,7 +1,7 @@
 //
 //  {TABLENAME}Helper.h
 //
-//  Created by Eldhose on 26/10/12.
+//  Created by Eldhose 
 //  Copyright (c) 2012 Islet Systems. All rights reserved.
 //
 
@@ -9,25 +9,25 @@
 #import "FMDatabase.h"
 
 #define {TABLENAME}CreateQuery @"{CREATEQUERY}"
+#define The{TABLENAME} [{TABLENAME}Helper sharedInstance]
 
+{NAMECONSTANTLIST}
 @interface {TABLENAME}:NSObject
-{
-{OBJECTLISTLOCAL}
-}
 {OBJECTLISTGLOBAL}
+- (NSDictionary *)asDictonary;
+- (id)initWithDictonary:(NSDictionary *)aDictonary;
 @end
 @interface {TABLENAME}Helper : NSObject
-@property (nonatomic, strong) FMDatabase *database;
+@property (nonatomic, strong) NSString *databasePath;
 
 +({TABLENAME}Helper *) sharedInstance;
--(BOOL)isDataBaseChanged;
--({TABLENAME} *)get{TABLENAME}ForCondition:(NSString *) condition;
--(NSArray *)get{TABLENAME}ListForCondition:(NSString *) condition;
--(NSArray *)getAll{TABLENAME}List;
--({TABLENAME} *)fill{TABLENAME}WithFMResultSet:(FMResultSet *) FMset;
--({TABLENAME}Helper *)initWithDatabase:(FMDatabase *) db;
--(void)delete{TABLENAME}ForCondition:(NSString *) condition;
--(void)insert{TABLENAME}ToDatabase:({TABLENAME} *) obj;
--(void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj withCondition:(NSString *) condition;
--(void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj;
+- (BOOL)isDataBaseChanged;
+- ({TABLENAME} *)get{TABLENAME}ForCondition:(NSString *) condition;
+- (NSArray *)get{TABLENAME}ListForCondition:(NSString *) condition;
+- (NSArray *)getAll{TABLENAME}List;
+- ({TABLENAME} *)fill{TABLENAME}WithFMResultSet:(FMResultSet *) FMset;
+- (void)delete{TABLENAME}ForCondition:(NSString *) condition;
+- (void)insert{TABLENAME}ToDatabase:({TABLENAME} *) obj;
+- (void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj withCondition:(NSString *) condition;
+- (void)update{TABLENAME}ToDatabase:({TABLENAME} *) obj;
 @end
